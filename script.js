@@ -63,7 +63,7 @@ function classificarIMC(imc) {
             classificacao: 'Obesidade Grau III',
             cor: '#B71C1C',
             texto: 'white',
-            mensagem: 'Voê tem seu proprio pulso gravitacional, parabens'
+            mensagem: 'Você tem seu proprio pulso gravitacional, parabens'
         };
     }
 }
