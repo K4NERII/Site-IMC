@@ -191,7 +191,7 @@ body {
     transform: translateY(0);
 }
 
-/* Responsividade */
+
 @media (max-width: 600px) {
     .calculator-card {
         padding: 25px;
