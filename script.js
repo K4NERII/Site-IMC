@@ -1,9 +1,9 @@
-// Função para formatar o número de telefone
+// formata o numero
 function formatPhone(value) {
-    // Remove tudo que não é número
+    // remove o que nn é numero
     const numbers = value.replace(/\D/g, '');
     
-    // Aplica a máscara (XX) XXXXX-XXXX
+    // meio dificil de explicar mas basicamente faz bota essa mascara aqui (xx) xxxxx xxxx
     if (numbers.length <= 11) {
         return numbers.replace(/(\d{2})?(\d{5})?(\d{4})?/, function(match, ddd, parte1, parte2) {
             let formatted = '';
@@ -16,12 +16,12 @@ function formatPhone(value) {
     return value;
 }
 
-// Função para calcular o IMC
+// calcula o IMC
 function calcularIMC(peso, altura) {
     return peso / (altura * altura);
 }
 
-// Função para classificar o IMC
+// classifica o IMC
 function classificarIMC(imc) {
     if (imc < 18.5) {
         return {
@@ -68,71 +68,71 @@ function classificarIMC(imc) {
     }
 }
 
-// Função para enviar mensagem via WhatsApp
+// envia mensagem via WhatsApp
 function enviarWhatsApp(numero, imc, classificacao, mensagem) {
-    // Remove a formatação do número
+    // tira a formatação
     const numeroLimpo = numero.replace(/\D/g, '');
     
-    // Formata a mensagem
-    const texto = `🩺 *Resultado do IMC*\n\n` +
-                  `📊 *IMC:* ${imc.toFixed(1)}\n` +
-                  `📋 *Classificação:* ${classificacao}\n\n` +
-                  `💡 *Recomendação:* ${mensagem}\n\n` +
+    // mensagem
+    const texto = `*Resultado do IMC*\n\n` +
+                  `*IMC:* ${imc.toFixed(1)}\n` +
+                  `*Classificação:* ${classificacao}\n\n` +
+                  `*Recomendação:* ${mensagem}\n\n` +
                   `_Cálculo realizado em: ${new Date().toLocaleDateString('pt-BR')}_`;
     
-    // Codifica a mensagem para URL
+    // codifica a mensagem para URL
     const textoCodificado = encodeURIComponent(texto);
     
-    // Cria o link do WhatsApp
+    // cria o link do WhatsApp
     const linkWhatsApp = `https://wa.me/55${numeroLimpo}?text=${textoCodificado}`;
     
-    // Abre o WhatsApp em nova aba
+    // abre o WhatsApp em nova aba
     window.open(linkWhatsApp, '_blank');
 }
 
-// Evento de formatação do campo WhatsApp
+// formatação do campo WhatsApp
 document.getElementById('whatsapp').addEventListener('input', function(e) {
     const formatted = formatPhone(e.target.value);
     e.target.value = formatted;
 });
 
-// Evento de submit do formulário
+// submit do formulário
 document.getElementById('imcForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Obtém os valores
+    // obtém os valores
     const peso = parseFloat(document.getElementById('peso').value);
     const altura = parseFloat(document.getElementById('altura').value);
     const whatsapp = document.getElementById('whatsapp').value;
     
-    // Validações
+    // validações
     if (!peso || !altura || !whatsapp) {
-        alert('Por favor, preencha todos os campos!');
+        alert('Por favor, preencha todos os campos.');
         return;
     }
     
     if (peso < 20 || peso > 300) {
-        alert('Por favor, insira um peso válido (entre 20kg e 300kg)');
+        alert('Um numero normal por favor (entre 20kg e 300kg)');
         return;
     }
     
     if (altura < 0.5 || altura > 2.5) {
-        alert('Por favor, insira uma altura válida (entre 0.5m e 2.5m)');
+        alert('você não tem 3 metros (entre 0.5m e 2.5m)');
         return;
     }
     
-    // Validação do WhatsApp
+    // validação do WhatsApp
     const whatsappNumeros = whatsapp.replace(/\D/g, '');
     if (whatsappNumeros.length < 10 || whatsappNumeros.length > 11) {
         alert('Por favor, insira um número de WhatsApp válido com DDD');
         return;
     }
     
-    // Calcula o IMC
+    // calcula o IMC
     const imc = calcularIMC(peso, altura);
     const resultado = classificarIMC(imc);
     
-    // Atualiza o resultado na tela
+    // atualiza o resultado na tela
     const resultadoDiv = document.getElementById('resultado');
     const imcValue = document.getElementById('imcValue');
     const classificacao = document.getElementById('classificacao');
@@ -144,22 +144,22 @@ document.getElementById('imcForm').addEventListener('submit', function(e) {
     classificacao.style.backgroundColor = resultado.cor;
     classificacao.style.color = resultado.texto;
     
-    // Calcula a posição na barra de progresso (IMC de 10 a 40+)
+    // progresso (IMC de 10 a 40+)
     const progresso = Math.min(((imc - 10) / 30) * 100, 100);
     progressBar.style.setProperty('--progress', `${progresso}%`);
     progressBar.querySelector('::after')?.style?.setProperty('width', `${progresso}%`);
     progressBar.setAttribute('data-progress', progresso);
     
-    // Configura o botão do WhatsApp
+    // botão do WhatsApp
     document.getElementById('whatsappBtn').onclick = function() {
         enviarWhatsApp(whatsapp, imc, resultado.classificacao, resultado.mensagem);
     };
     
-    // Scroll suave até o resultado
+    // scroll até o resultado
     resultadoDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
 
-// Adiciona estilo dinâmico para a barra de progresso
+// adiciona estilo dinâmico para a barra de progresso
 const style = document.createElement('style');
 style.textContent = `
     .progress-bar::after {
@@ -168,12 +168,12 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Atualiza o progresso da barra quando definido
+// atualiza o progresso da barra quando definido
 function atualizarProgressBar(progresso) {
     document.documentElement.style.setProperty('--progress', `${progresso}%`);
 }
 
-// Observador para atualizar a barra de progresso
+// observador para atualizar a barra de progresso
 const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
         if (mutation.target.id === 'progressBar' && mutation.type === 'attributes') {
