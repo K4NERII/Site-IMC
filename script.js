@@ -28,42 +28,42 @@ function classificarIMC(imc) {
             classificacao: 'Abaixo do peso',
             cor: '#FFC107',
             texto: '#333',
-            mensagem: 'Você está abaixo do peso ideal. Consulte um nutricionista para orientação adequada.'
+            mensagem: 'Hulk magrelo.'
         };
     } else if (imc >= 18.5 && imc < 25) {
         return {
             classificacao: 'Peso normal',
             cor: '#4CAF50',
             texto: 'white',
-            mensagem: 'Parabéns! Você está com o peso ideal. Mantenha hábitos saudáveis!'
+            mensagem: 'Nada mais que sua obrigação'
         };
     } else if (imc >= 25 && imc < 30) {
         return {
             classificacao: 'Sobrepeso',
             cor: '#FF9800',
             texto: 'white',
-            mensagem: 'Você está com sobrepeso. Considere ajustar sua alimentação e praticar exercícios.'
+            mensagem: 'Aceitavel ainda vai pra academia'
         };
     } else if (imc >= 30 && imc < 35) {
         return {
             classificacao: 'Obesidade Grau I',
             cor: '#FF5722',
             texto: 'white',
-            mensagem: 'Atenção! Obesidade Grau I. É recomendado procurar orientação médica.'
+            mensagem: 'Baleio nivel 1 medo de saladas'
         };
     } else if (imc >= 35 && imc < 40) {
         return {
             classificacao: 'Obesidade Grau II',
             cor: '#F44336',
             texto: 'white',
-            mensagem: 'Alerta! Obesidade Grau II. Procure ajuda profissional para sua saúde.'
+            mensagem: 'vegetais contam historias suas na fogueira'
         };
     } else {
         return {
             classificacao: 'Obesidade Grau III',
             cor: '#B71C1C',
             texto: 'white',
-            mensagem: 'Urgente! Obesidade Grau III. Sua saúde está em risco. Procure ajuda médica.'
+            mensagem: 'Voê tem seu proprio pulso gravitacional, parabens'
         };
     }
 }
