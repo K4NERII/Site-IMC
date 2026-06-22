@@ -124,7 +124,7 @@ document.getElementById('imcForm').addEventListener('submit', function(e) {
     // validação do WhatsApp
     const whatsappNumeros = whatsapp.replace(/\D/g, '');
     if (whatsappNumeros.length < 10 || whatsappNumeros.length > 11) {
-        alert('Por favor, insira um número de WhatsApp válido com DDD');
+        alert('nao pode o numero do bom dia e compania');
         return;
     }
     
