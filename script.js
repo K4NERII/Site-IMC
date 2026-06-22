@@ -21,7 +21,7 @@ function calcularIMC(peso, altura) {
     return peso / (altura * altura);
 }
 
-// classifica o IMC
+// classifica o IMC por algum motivo NÂO ESTA FUNCIONANDO >:(
 function classificarIMC(imc) {
     if (imc < 18.5) {
         return {
